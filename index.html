@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>小工具網站</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>小工具網站</h1>
+    <nav>
+      <ul>
+        <li><a href="#char-counter">字元統計器</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section id="char-counter">
+      <h2>字元統計器</h2>
+      <textarea id="input"></textarea>
+      <button onclick="count()">統計</button>
+      <p>字元數： <span id="charCount"></span></p>
+      <p>中文字數： <span id="chineseCount"></span></p>
+      <p>標點符號數： <span id="punctuationCount"></span></p>
+      <p>英文字母數： <span id="letterCount"></span></p>
+      <p>英文單字數： <span id="wordCount"></span></p>
+    </section>
+
+    <!-- 在這裡添加其他小工具的內容 -->
+  </main>
+  
+  <script>
+    function count() {
+      var input = document.getElementById("input").value;
+      
+      // 計算字元數
+      var charCount = input.length;
+      document.getElementById("charCount").innerHTML = charCount;
+      
+      // 計算中文字數
+      var chineseCount = input.match(/[\u4e00-\u9fa5]/g) ? input.match(/[\u4e00-\u9fa5]/g).length : 0;
+      document.getElementById("chineseCount").innerHTML = chineseCount;
+      
+      // 計算標點符號數
+      var punctuationCount = input.match(/[^\u4e00-\u9fa5\w]/g) ? input.match(/[^\u4e00-\u9fa5\w]/g).length : 0;
+      document.getElementById("punctuationCount").innerHTML = punctuationCount;
+      
+      // 計算英文字母數
+      var letterCount = input.match(/[a-zA-Z]/g) ? input.match(/[a-zA-Z]/g).length : 0;
+      document.getElementById("letterCount").innerHTML = letterCount;
+      
+      // 計算英文單字數
+      var wordCount = input.match(/\b\w+\b/g) ? input.match(/\b\w+\b/g).length : 0;
+      document.getElementById("wordCount").innerHTML = wordCount;
+    }
+  </script>
+</body>
+</html>
